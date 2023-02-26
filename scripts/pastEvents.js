@@ -19,14 +19,19 @@ console.log(fechaFiltrada(data.events))
 
 const pastEvents = fechaFiltrada(data.events)
 
-for (let pastEvent of pastEvents){
-    cards.innerHTML += `<div id="${pastEvents._id}" class="col border">
-    <img src="${pastEvent.image}" class="card-img-top" alt="cine" height="250" width="50">
+let cardsString = ''
+for (let event of pastEvents){
+    cardsString += `<div id="${event._id}" class="col-2 p-2">
+    <div class="card">
+    <img src="${event.image}" class="card-img-top" alt="cine" height="250">
     <div class="card-body text-center">
-      <h5 class="card-title">${pastEvent.name}</h5>
-      <p class="card-text">${pastEvent.description}</p>
-      <p class="card-text d-inline "><small class="text-muted">Price ${pastEvent.price}</small></p>
+      <h5 class="card-title">${event.name}</h5>
+      <p class="card-text">${event.description}</p>
+      <p class="card-text d-inline "><small class="text-muted">Price ${event.price}</small></p>
       <a  href ="ver más" class="card-text d-inline "><small class="text-muted">ver más</small></a>
-    </div>`
+    </div></div></div>`
 }
 
+
+const cards = document.getElementById('cards')
+cards.innerHTML = cardsString
