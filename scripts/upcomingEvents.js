@@ -1,4 +1,4 @@
-import data from "../data/data.js";
+
 
 
 const currentDate = data.currentDate
@@ -28,7 +28,7 @@ for (let event of upcomingEvents){
       <h5 class="card-title">${event.name}</h5>
       <p class="card-text">${event.description}</p>
       <p class="card-text d-inline "><small class="text-muted">Price ${event.price}</small></p>
-      <a  href ="ver más" class="card-text d-inline "><small class="text-muted">ver más</small></a>
+      <a href="/details.html?id=${event._id}" ><small class="text-muted">ver más</small></a>
     </div></div></div>`
 }
 
