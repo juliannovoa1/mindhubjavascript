@@ -5,7 +5,7 @@ let cardsString = ''
 for (let event of events){
     cardsString += `<div id="${event._id}" class="col-2 p-2">
     <div class="card">
-    <img src="${event.image}" class="card-img-top" alt="cine" height="250">
+    <img src="${event.image}" class="card-img-top" alt="cine" height = "150">
     <div class="card-body text-center">
       <h5 class="card-title">${event.name}</h5>
       <p class="card-text">${event.description}</p>

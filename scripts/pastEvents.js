@@ -1,6 +1,3 @@
-
-
-
 const currentDate = data.currentDate
 
 function fechaFiltrada(eventos){
@@ -13,8 +10,6 @@ function fechaFiltrada(eventos){
     return pastEvents
 }
 
-
-console.log(fechaFiltrada(data.events))
 
 
 const pastEvents = fechaFiltrada(data.events)
