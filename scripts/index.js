@@ -17,3 +17,44 @@ for (let event of events){
 
 const cards = document.getElementById('cards')
 cards.innerHTML = cardsString
+
+
+
+
+//------------------------------------------------------
+
+
+let categorias =  [];
+
+let categoria = document.getElementById("categorias")
+data.events.forEach(evento => {
+  if(!categorias.includes(evento.category)){
+    categorias.push(evento.category)
+      categoria.innerHTML += `<div id="content-cat">
+        <div class="checkbox">
+          <input type="checkbox" name="category" id="${evento.category}" value="${evento.category}">
+          <span>${evento.category}</span>
+        </div>
+     </div>`
+  }
+  });
+
+
+/*Filtro categorias*/
+
+let botonCheck = document.querySelectorAll("input[type='checkbox']")
+let eventsCheck = []
+botonCheck.forEach(boton => boton.addEventListener('change',verificate))
+function verificate(){
+  eventsCheck = []
+  let seleccionar = Array.from(botonCheck).filter(check => check.checked)
+  for (const event of data.events){
+    seleccionar.forEach(input =>{
+      if(event.category == input.value){
+        eventsCheck.push(event)
+      }
+    })
+  }
+}
+
+

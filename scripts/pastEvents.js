@@ -32,14 +32,3 @@ const cards = document.getElementById('cards')
 cards.innerHTML = cardsString 
 
 //------------------------------------------------------
-
-let form = document.getElementById('form')
-let input = document.getElementById 
-
-form.addEventListener('submit',(e) => {
-    e.preventDefault()
-    
-    console.log(form[0].value)
-})
-
-
