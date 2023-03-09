@@ -32,3 +32,17 @@ const cards = document.getElementById('cards')
 cards.innerHTML = cardsString 
 
 //------------------------------------------------------
+let categorias = [];
+
+let categoria = document.getElementById("categorias")
+data.events.forEach(evento => {
+  if (!categorias.includes(evento.category)) {
+    categorias.push(evento.category)
+    categoria.innerHTML += `<div id="content-cat" class="form-check form-check-inline py-4">
+        <div class="checkbox">
+          <input type="checkbox" name="category" id="${evento.category}" value="${evento.category}">
+          <span>${evento.category}</span>
+        </div>
+     </div>`
+  }
+});

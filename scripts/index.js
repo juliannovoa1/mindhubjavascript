@@ -33,7 +33,7 @@ let categoria = document.getElementById("categorias")
 data.events.forEach(evento => {
   if (!categorias.includes(evento.category)) {
     categorias.push(evento.category)
-    categoria.innerHTML += `<div id="content-cat">
+    categoria.innerHTML += `<div id="content-cat" class="form-check form-check-inline py-4">
         <div class="checkbox">
           <input type="checkbox" name="category" id="${evento.category}" value="${evento.category}">
           <span>${evento.category}</span>
@@ -55,13 +55,14 @@ botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
     const indiceCategoria = catCheck.findIndex(category => category === e.target.value);
     catCheck.splice(indiceCategoria, 1);
   }
+  eventsFilter = []
   data.events.forEach(evento => {
     if (catCheck.includes(evento.category)) {
       eventsFilter.push(evento)
       console.log(eventsFilter)
 
     }
-    
+  
     catCheckeado = []
     catCheckeado.forEach(cat => {
       categorias.forEach(evento => {if (evento.categoria === cat){catCheckeado.push(evento)}})
@@ -78,9 +79,9 @@ botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
 
 
 
-/*Search
+Search
 
 let searchBtn = document.getElementById('search');
 let inputSearch = document.getElementById('input');
 
-inputSearch.addEventListener("keypress",(e))*/
+inputSearch.addEventListener("keypress",(e))
