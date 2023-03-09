@@ -1,8 +1,10 @@
 const currentDate = data.currentDate
+const events = data.events
 
-function fechaFiltrada(eventos){
+
+function fechaFiltrada(){
     let upcomingEvents = []
-    for(let evento of eventos){
+    for(let evento of events){
         if (currentDate < evento.date){
             upcomingEvents.push(evento)
         }
@@ -12,27 +14,30 @@ function fechaFiltrada(eventos){
 
 
 
-const upcomingEvents = fechaFiltrada(data.events)
+function showCards(eventArray) {
 
-let cardsString = ''
-for (let event of upcomingEvents){
+  let cardsString = ''
+  for (let event of eventArray) {
     cardsString += `<div id="${event._id}" class="col-2 p-2">
     <div class="card">
-    <img src="${event.image}" class="card-img-top" alt="cine" height="250">
+    <img src="${event.image}" class="card-img-top" alt="cine" height = "150">
     <div class="card-body text-center">
       <h5 class="card-title">${event.name}</h5>
       <p class="card-text">${event.description}</p>
       <p class="card-text d-inline "><small class="text-muted">Price ${event.price}</small></p>
-      <a href="/details.html?id=${event._id}" ><small class="text-muted">ver más</small></a>
+      <a href="/details.html?id=${event._id}" class="card-text d-inline "><small class="text-muted">ver más</small></a>
     </div></div></div>`
+  }
+
+
+  const cards = document.getElementById('cards')
+  cards.innerHTML = cardsString
 }
-
-
-const cards = document.getElementById('cards')
-cards.innerHTML = cardsString
+showCards(fechaFiltrada())
 
 
 //------------------------------------------------------
+/*Categorias*/
 
 let categorias = [];
 
@@ -49,7 +54,9 @@ data.events.forEach(evento => {
   }
 });
 
-//------------------------------------------------------
+
+/*Filtro categorias*/
+
 let botonCheck = document.querySelectorAll("input[type='checkbox']")
 let catCheck = []
 let eventsFilter = []
@@ -61,7 +68,7 @@ botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
     catCheck.splice(indiceCategoria, 1);
   }
   eventsFilter = []
-  data.events.forEach(evento => {
+  fechaFiltrada().forEach(evento => {
     if (catCheck.includes(evento.category)) {
       eventsFilter.push(evento)
       console.log(eventsFilter)
@@ -73,8 +80,20 @@ botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
       categorias.forEach(evento => {if (evento.categoria === cat){catCheckeado.push(evento)}})
     })
   })
-  console.log(fechaFiltrada(eventsFilter))
-  fechaFiltrada(eventsFilter)
+  console.log(showCards(eventsFilter))
+  showCards(eventsFilter)
 
 }))
 
+
+
+
+
+
+
+Search
+
+let searchBtn = document.getElementById('search');
+let inputSearch = document.getElementById('input');
+
+inputSearch.addEventListener("keypress",(e))
