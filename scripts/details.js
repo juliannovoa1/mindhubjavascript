@@ -1,29 +1,11 @@
-urlApi = "https://mindhub-xj03.onrender.com/api/amazing"
+let parametro = new URLSearchParams(location.search);
+let container = document.querySelector(".cards")
 
-async function getData() {
-  try {
-      let response = await fetch(urlApi)
-
-      let datos = await response.json()
-
-      tarjetaDetails(datos.events)
-  }
-  catch {
-      console.log()
-  }
-}
-
-getData()
-
-
-let query = location.search;
-let parametros = new URLSearchParams(query);
-let id = parametros.get("id") 
-let evento = data.events.find(evento => evento._id == id);
-
-
-let container = document.querySelector(".contenedorDetails")
-container.innerHTML = `<div class="detail-card d-flex flex-column flex-lg-row justify-content-center align-items-center 
+fetch('https://mindhub-xj03.onrender.com/api/amazing')
+    .then(response => response.json())
+    .then(data => {
+      let evento = data.events.find(evento => evento._id == parametro.get("id"));
+     container.innerHTML = `<div class="detail-card d-flex flex-column flex-lg-row justify-content-center align-items-center 
  border border-dark border-1">
 <img src="${evento.image}" alt="${evento.name}" class="card-img" height="800">
 <div class="card-body text-center">
@@ -37,4 +19,4 @@ container.innerHTML = `<div class="detail-card d-flex flex-column flex-lg-row ju
   <div><a href="./index.html" class="text-decoration-none fs-5"><b>Go Home</b></a>
 </div></div></div>` 
 
-
+    })

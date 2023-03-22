@@ -66,97 +66,63 @@
 
 
     <main>
-        <div class="main-container container-fluid mb-3">
-            <div class="table-container d-flex justify-content-center align-items-center">
-                <table class="table ">
-                    <thead>
-                        <tr class="table-primary">
-                            <th colspan="3">Events statistics</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Events with the highest percentage of attendance</td>
-                            <td>Events with the highest percentage of attendance</td>
-                            <td>Events with the highest percentage of attendance</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-
-                    <thead>
-                        <tr class="table-secondary">
-                            <th colspan="3">Upcoming events statistics by category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Categories</td>
-                            <td>Revenues</td>
-                            <td>Percentage of attendance</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-
-                    <thead>
-                        <tr class="table-terceray">
-                            <th colspan="3">Past events statistics by category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Categories</td>
-                            <td>Revenues</td>
-                            <td>Percentage of attendance</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div id="carouselExampleDark" class="carousel carousel-dark slide">
+            <div class="carousel-inner">
+                <div class="carousel-control-prev" data-bs-slide="prev">
+                    <a href="./contact.html">
+                        <span class="carousel-control-prev-icon" aria-hidden="true">
+                        </span></a>
+                </div>
+                <div class="carousel-control-next" data-bs-slide="next">
+                    <a href="./home.html">
+                        <span class="carousel-control-next-icon" aria-hidden="true">
+                        </span></a>
+                </div>
+            </div>
+        </div>
+        <div role="main" class="container p-2">
+            <div class="row p-3">
+                <div class="col-12 table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Events statistics</th>
+                            </tr>
+                        </thead>
+                        <tbody id ="categoria-tabla">
+                            <tr>
+                                <td class="col-4 "><b>Events with the highest percentage of attendance</b>
+                                </td>
+                                <td class="col-4 "><b>Events with the lowest percentage of attendance</b>
+                                </td>
+                                <td class="col-4 "><b>Events with larger capacity</b></td>
+                            </tr>
+                            <tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Past Events statistics by category</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoria-tabla2">
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Upcoming events statistics by category</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categoria-tabla3">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
-
 
 
 

@@ -1,5 +1,5 @@
 
-const events = data.events
+const events = data.events/*se llama ya json, no funciona mas el data.events*/
 
 
 function showCards(eventArray) {
@@ -13,7 +13,7 @@ function showCards(eventArray) {
       <h5 class="card-title">${event.name}</h5>
       <p class="card-text">${event.description}</p>
       <p class="card-text d-inline "><small class="text-muted">Price ${event.price}</small></p>
-      <a href="/details.html?id=${event._id}" class="card-text d-inline "><small class="text-muted">ver más</small></a>
+      <a href="./scripts/details.html?id=${event._id}" class="card-text d-inline "><small class="text-muted">ver más</small></a>
     </div></div></div>`
   }
 
@@ -45,6 +45,8 @@ data.events.forEach(evento => {
 
 /*Filtro categorias*/
 
+/*funcion que filtre por busqueda */
+
 let botonCheck = document.querySelectorAll("input[type='checkbox']")
 let catCheck = []
 let eventsFilter = []
@@ -67,6 +69,7 @@ botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
     catCheckeado.forEach(cat => {
       categorias.forEach(evento => {if (evento.categoria === cat){catCheckeado.push(evento)}})
     })
+  
   })
   console.log(showCards(eventsFilter))
   showCards(eventsFilter)
@@ -75,7 +78,11 @@ botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
 
 
 
-//BUSQUEDA
+
+
+
+
+/*Busqueda*/
 const searchInput = document.getElementById('search');
 const searchButton = document.getElementById('input');
 let busqueda = '';
