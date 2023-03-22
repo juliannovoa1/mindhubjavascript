@@ -1,3 +1,21 @@
+urlApi = "https://mindhub-xj03.onrender.com/api/amazing"
+
+async function getData() {
+  try {
+      let response = await fetch(urlApi)
+
+      let datos = await response.json()
+
+      tarjetaDetails(datos.events)
+  }
+  catch {
+      console.log()
+  }
+}
+
+getData()
+
+
 let query = location.search;
 let parametros = new URLSearchParams(query);
 let id = parametros.get("id") 
@@ -18,3 +36,5 @@ container.innerHTML = `<div class="detail-card d-flex flex-column flex-lg-row ju
   <p class="card-text d-inline"><small class="text-muted"><b>Price: </b>${evento.price}</small></p>
   <div><a href="./index.html" class="text-decoration-none fs-5"><b>Go Home</b></a>
 </div></div></div>` 
+
+

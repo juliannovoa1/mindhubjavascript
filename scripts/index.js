@@ -75,13 +75,37 @@ botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
 
 
 
+//BUSQUEDA
+const searchInput = document.getElementById('search');
+const searchButton = document.getElementById('input');
+let busqueda = '';
 
-
-
-
-Search
-
-let searchBtn = document.getElementById('search');
-let inputSearch = document.getElementById('input');
-
-inputSearch.addEventListener("keypress",(e))
+function filterCards() {
+  const cardElements = document.querySelectorAll('.cards');
+  let count = 0;
+  cardElements.forEach(cards => {
+    const title = cards.querySelector('h5').innerText.toLowerCase();
+    const description = cards.querySelector('p').innerText.toLowerCase();
+    if (title.includes(busqueda) || description.includes(busqueda)) {
+      cards.style.display = 'block';
+      count++;
+    } else {
+      cards.style.display = 'none';
+    }
+  });
+  if (count === 0) {
+    const results =
+    `<div class='contenedor p-5 fs-4'><span>No se encontaron resultados</span></div>`
+    card.innerHTML = results;
+  }
+}
+searchButton.addEventListener('click', (e) => {
+  busqueda = searchInput.value.toLowerCase()
+  filterCards()
+});
+searchInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault
+    filterCards()
+  }
+});
