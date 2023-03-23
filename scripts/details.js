@@ -1,5 +1,5 @@
 let parametro = new URLSearchParams(location.search);
-let container = document.querySelector(".cards")
+let container = document.querySelector(".contenedorDetails")
 
 fetch('https://mindhub-xj03.onrender.com/api/amazing')
     .then(response => response.json())
