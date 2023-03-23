@@ -1,10 +1,9 @@
+const cards = document.getElementById('cards');
 
-const events = data.events/*se llama ya json, no funciona mas el data.events*/
-
+let eventsFilter = [];
 
 function showCards(eventArray) {
-
-  let cardsString = ''
+  let cardsString = '';
   for (let event of eventArray) {
     cardsString += `<div id="${event._id}" class="col-2 p-2">
     <div class="card">
@@ -16,68 +15,56 @@ function showCards(eventArray) {
       <a href="./scripts/details.html?id=${event._id}" class="card-text d-inline "><small class="text-muted">ver más</small></a>
     </div></div></div>`
   }
-
-
-  const cards = document.getElementById('cards')
-  cards.innerHTML = cardsString
+  cards.innerHTML = cardsString;
 }
-showCards(data.events)
 
+const traerData = async () => {
+  await fetch('https://mindhub-xj03.onrender.com/api/amazing')
+    .then(response => response.json())
+    .then(data => {
+      data = data;
+      eventsFilter = data.events;
+      showCards(eventsFilter);
 
-//------------------------------------------------------
-/*Categorias*/
+      /*Categorias*/
+      let categorias = [];
+      let categoria = document.getElementById("categorias")
+      eventsFilter.forEach(evento => {
+        if (!categorias.includes(evento.category)) {
+          categorias.push(evento.category)
+          categoria.innerHTML += `<div id="content-cat" class="form-check form-check-inline py-4">
+              <div class="checkbox">
+                <input type="checkbox" name="category" id="${evento.category}" value="${evento.category}">
+                <span>${evento.category}</span>
+              </div>
+          </div>`
+        }
+      });
 
-let categorias = [];
+      /*Filtro categorias*/
+      let botonCheck = document.querySelectorAll("input[type='checkbox']")
+      let catCheck = []
+      botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
+        if (e.target.type === "checkbox" && !catCheck.includes(e.target.value)) {
+          catCheck.push(e.target.value)
+        } else if (e.target.type === "checkbox" && catCheck.includes(e.target.value)) {
+          const indiceCategoria = catCheck.findIndex(category => category === e.target.value);
+          catCheck.splice(indiceCategoria, 1);
+        }
+        eventsFilter.forEach(evento => {
+          if (catCheck.includes(evento.category)) {
+            eventsFilter.push(evento)
+          }
+          let catCheckeado = []
+          catCheckeado.forEach(cat => {
+            categorias.forEach(evento => { if (evento.categoria === cat) { catCheckeado.push(evento) } })
+          })
+        })
+      }))
+    });
+}
 
-let categoria = document.getElementById("categorias")
-data.events.forEach(evento => {
-  if (!categorias.includes(evento.category)) {
-    categorias.push(evento.category)
-    categoria.innerHTML += `<div id="content-cat" class="form-check form-check-inline py-4">
-        <div class="checkbox">
-          <input type="checkbox" name="category" id="${evento.category}" value="${evento.category}">
-          <span>${evento.category}</span>
-        </div>
-     </div>`
-  }
-});
-
-
-/*Filtro categorias*/
-
-/*funcion que filtre por busqueda */
-
-let botonCheck = document.querySelectorAll("input[type='checkbox']")
-let catCheck = []
-let eventsFilter = []
-botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
-  if (e.target.type === "checkbox" && !catCheck.includes(e.target.value)) {
-    catCheck.push(e.target.value)
-  } else if (e.target.type === "checkbox" && catCheck.includes(e.target.value)){
-    const indiceCategoria = catCheck.findIndex(category => category === e.target.value);
-    catCheck.splice(indiceCategoria, 1);
-  }
-  eventsFilter = []
-  data.events.forEach(evento => {
-    if (catCheck.includes(evento.category)) {
-      eventsFilter.push(evento)
-      console.log(eventsFilter)
-
-    }
-  
-    catCheckeado = []
-    catCheckeado.forEach(cat => {
-      categorias.forEach(evento => {if (evento.categoria === cat){catCheckeado.push(evento)}})
-    })
-  
-  })
-  console.log(showCards(eventsFilter))
-  showCards(eventsFilter)
-
-}))
-
-
-
+traerData();
 
 
 
