@@ -7,7 +7,7 @@ fetch('https://mindhub-xj03.onrender.com/api/amazing')
       let evento = data.events.find(evento => evento._id == parametro.get("id"));
      container.innerHTML = `<div class="detail-card d-flex flex-column flex-lg-row justify-content-center align-items-center 
  border border-dark border-1">
-<img src="${evento.image}" alt="${evento.name}" class="card-img" height="800">
+<img src="${evento.image}" alt="${evento.name}" class="card-img" height="600" >
 <div class="card-body text-center">
   <h5 class="card-title"><b>Name: </b>${evento.name}</h5>
   <p class="card-text"><b>Description: </b>${evento.description}</p>

@@ -8,10 +8,10 @@ let pastEvents = [];
 function showCards(eventArray) {
   let cardsString = '';
   for (let event of eventArray) {
-    cardsString += `<div id="${event._id}" class="col-2 p-2">
-    <div class="card">
-    <img src="${event.image}" class="card-img-top" alt="cine" height = "150">
-    <div class="card-body text-center">
+    cardsString += `<div class="col card2" id="${event._id}">
+    <div class="card h-100">
+      <img src="${event.image}" class="card-img-top" style="width:100% ; height:10vw ; object-fit:cover;" alt="...">
+      <div class="card-body  d-flex flex-column">
       <h5 class="card-title">${event.name}</h5>
       <p class="card-text">${event.description}</p>
       <p class="card-text d-inline "><small class="text-muted">Price ${event.price}</small></p>
