@@ -1,6 +1,7 @@
 const cards = document.getElementById('cards');
 
 let eventsFilter = [];
+let events = []
 
 function showCards(eventArray) {
   let cardsString = '';
@@ -12,24 +13,22 @@ function showCards(eventArray) {
       <h5 class="card-title">${event.name}</h5>
       <p class="card-text">${event.description}</p>
       <p class="card-text d-inline "><small class="text-muted">Price ${event.price}</small></p>
-      <a href="./scripts/details.html?id=${event._id}" class="card-text d-inline "><small class="text-muted">ver más</small></a>
+      <a href="./details.html?id=${event._id}" class="card-text d-inline "><small class="text-muted">ver más</small></a>
     </div></div></div>`
   }
   cards.innerHTML = cardsString;
 }
-
+let categorias = []
 const traerData = async () => {
   await fetch('https://mindhub-xj03.onrender.com/api/amazing')
     .then(response => response.json())
     .then(data => {
-      data = data;
-      eventsFilter = data.events;
-      showCards(eventsFilter);
+      events = data.events;
+      showCards(events);
 
       /*Categorias*/
-      let categorias = [];
       let categoria = document.getElementById("categorias")
-      eventsFilter.forEach(evento => {
+      events.forEach(evento => {
         if (!categorias.includes(evento.category)) {
           categorias.push(evento.category)
           categoria.innerHTML += `<div id="content-cat" class="form-check form-check-inline py-4">
@@ -41,32 +40,38 @@ const traerData = async () => {
         }
       });
 
-      /*Filtro categorias*/
-      let botonCheck = document.querySelectorAll("input[type='checkbox']")
-      let catCheck = []
-      botonCheck.forEach(boton => boton.addEventListener('click', (e) => {
-        if (e.target.type === "checkbox" && !catCheck.includes(e.target.value)) {
-          catCheck.push(e.target.value)
-        } else if (e.target.type === "checkbox" && catCheck.includes(e.target.value)) {
-          const indiceCategoria = catCheck.findIndex(category => category === e.target.value);
-          catCheck.splice(indiceCategoria, 1);
-        }
-        eventsFilter.forEach(evento => {
-          if (catCheck.includes(evento.category)) {
-            eventsFilter.push(evento)
-          }
-          let catCheckeado = []
-          catCheckeado.forEach(cat => {
-            categorias.forEach(evento => { if (evento.categoria === cat) { catCheckeado.push(evento) } })
-          })
-        })
-      }))
+
+
     });
 }
 
 traerData();
 
 
+function filtrar(cats){
+  eventsFilter = []
+  events.forEach(evento => {
+    if (cats.includes(evento.category)) {
+      eventsFilter.push(evento)
+    }
+  })
+  showCards(eventsFilter)
+}
+
+let catCheck = [];
+let botonCheck = document.getElementById('categorias');
+botonCheck.addEventListener('click', (e) => {
+  if (e.target.type === "checkbox" && !catCheck.includes(e.target.value)) {
+    catCheck.push(e.target.value)
+    filtrar(catCheck)
+  } else if (e.target.type === "checkbox" && catCheck.includes(e.target.value)) {
+    const indiceCategoria = catCheck.findIndex(category => category === e.target.value);
+    catCheck.splice(indiceCategoria, 1);
+    filtrar(catCheck)
+  }
+  console.log(eventsFilter)
+
+})
 
 
 /*Busqueda*/
@@ -89,8 +94,8 @@ function filterCards() {
   });
   if (count === 0) {
     const results =
-    `<div class='contenedor p-5 fs-4'><span>No se encontaron resultados</span></div>`
-    card.innerHTML = results;
+      `<div class='contenedor p-5 fs-4'><span>No se encontaron resultados</span></div>`
+    cards.innerHTML = results;
   }
 }
 searchButton.addEventListener('click', (e) => {
@@ -103,3 +108,5 @@ searchInput.addEventListener('keypress', (e) => {
     filterCards()
   }
 });
+
+
