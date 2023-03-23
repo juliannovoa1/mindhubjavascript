@@ -52,9 +52,9 @@ const crearTabla = () => {
     const tablaUno = document.getElementById("categoria-tabla");
     //filas
     const rows = [
-        createRow(`Mayor porcentaje: ${mayor.toFixed(2)} %`),
-        createRow(`Menor porcentaje: ${menor.toFixed(2)} %)`),
-        createRow(`Mayor capacidad: ${largerCapacity}`),
+        createRow(`Higher percentage: ${mayor.toFixed(2)} %`),
+        createRow(`Lower perecentage: ${menor.toFixed(2)} %)`),
+        createRow(`Larger capacity: ${largerCapacity}`),
     ];
     rows.forEach((row) => {
         tablaUno.appendChild(row);
